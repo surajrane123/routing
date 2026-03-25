@@ -1,0 +1,11 @@
+<h1>User List</h1>
+
+<ul>
+  @for (user of usersData(); track user.id) {
+    <li>
+      ID: {{ user.id }} <br>
+      Title: {{ user.title }} <br>
+      Price: {{ user.price }}
+    </li>
+  }
+</ul>
