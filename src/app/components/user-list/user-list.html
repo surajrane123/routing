@@ -3,9 +3,10 @@
 <ul>
   @for (user of usersData(); track user.id) {
     <li>
-      ID: {{ user.id }} <br>
-      Title: {{ user.title }} <br>
-      Price: {{ user.price }}
+      {{ user.title }} - ₹{{ user.price }}
+
+      <button (click)="deleteUser(user.id)">Delete</button>
+      <button (click)="editUser(user.id)">Edit</button>
     </li>
   }
 </ul>

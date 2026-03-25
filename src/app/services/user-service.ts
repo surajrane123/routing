@@ -6,19 +6,24 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  // API URLs
   getUrl = "https://dummyjson.com/products";
   postUrl = "https://dummyjson.com/users/add";
 
   constructor(private http: HttpClient) {}
 
-  // ✅ GET data (for user list)
   getUser() {
     return this.http.get<any>(this.getUrl);
   }
 
-  // ✅ POST data (add user)
   saveUser(data: any) {
-    return this.http.post<any>(this.postUrl, data);
+    return this.http.post(this.postUrl, data);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(`https://dummyjson.com/products/${id}`);
+  }
+
+  updateUser(id: number, data: any) {
+    return this.http.put(`https://dummyjson.com/users/${id}`, data);
   }
 }

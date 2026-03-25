@@ -12,7 +12,6 @@ import { UserService } from '../../services/user-service';
 })
 export class AddUser {
 
-  // ✅ form controls
   name = new FormControl('');
   email = new FormControl('');
   age = new FormControl('');
@@ -22,36 +21,22 @@ export class AddUser {
     private router: Router
   ) {}
 
-  // ✅ function when button clicked
   adduser() {
 
-    const name = this.name.value;
-    const email = this.email.value;
-    const age = this.age.value;
+    const data = {
+      name: this.name.value,
+      email: this.email.value,
+      age: Number(this.age.value)
+    };
 
-    // ✅ validation
-    if (name && email && age) {
-
-      const data = {
-        name: name,
-        email: email,
-        age: Number(age)
-      };
-
-      // ✅ API call
-      this.userService.saveUser(data).subscribe((resp: any) => {
-        console.log("User added:", resp);
-
-        // ✅ redirect to user list
+    if (data.name && data.email && data.age) {
+      this.userService.saveUser(data).subscribe(() => {
         this.router.navigate(['/']);
       });
 
-      // ✅ clear inputs
       this.name.reset();
       this.email.reset();
       this.age.reset();
-    } else {
-      alert("Please fill all fields");
     }
   }
 }
